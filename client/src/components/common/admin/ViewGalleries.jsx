@@ -1,7 +1,8 @@
 import Gallery from "./Gallery";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { GripVertical, Plus, Home, Search, X } from "lucide-react";
+import { GripVertical, Plus, Home, Search, X, LogOut } from "lucide-react";
 import { DndContext } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -18,6 +19,7 @@ import { changeGalleryPosition } from "../../../api/images";
 import { fetchAllData } from "../../../utils/fetchAllData";
 
 function ViewGalleries({ modalOpen, gallery, search, handleSearch }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isDragOn, setIsDragOn] = useState(false);
@@ -70,6 +72,9 @@ function ViewGalleries({ modalOpen, gallery, search, handleSearch }) {
     }
   };
 
+  const handleLogout = async () => {
+  }
+
   return (
     <div className="text-neutral-300 rounded-2xl ml-3 my-3 min-w-100 h-[calc(100vh-1.5rem)] overflow-y-auto overflow-x-hidden relative bg-neutral-900">
       <div className="flex items-center gap-3 px-4 mt-4">
@@ -78,6 +83,13 @@ function ViewGalleries({ modalOpen, gallery, search, handleSearch }) {
           className="bg-neutral-800 border border-neutral-700 p-2 rounded-xl text-neutral-400 flex-shrink-0 cursor-pointer hover:text-neutral-300 "
         >
           <Home className="size-6" />
+        </button>
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="bg-neutral-800 border border-neutral-700 p-2 rounded-xl text-neutral-400 flex-shrink-0 cursor-pointer hover:text-neutral-300 "
+        >
+          <LogOut className="size-6" />
         </button>
         <div className="relative w-full">
           <Search className="absolute top-1/2 -translate-y-1/2 left-3 text-gray-500 size-5" />

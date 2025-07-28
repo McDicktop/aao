@@ -10,7 +10,6 @@ const { controller } = require('../controller/galleryController.js')
 const handleMulter = require('../middlewares/handleMulter.js');                 // handle upload errors (file size, file exts)
 const checkFileUpload = require('../middlewares/checkFileUpload.js');                       // check if not only file is uploads
 const processImage = require('../middlewares/processImage.js');
-const { authenticate, isAdmin } = require('../middlewares/authMiddleware.js')
 
 const router = new Router();
 
@@ -23,7 +22,6 @@ router.delete('/:id', controller.deleteArtwork);                                
 // Gallery routes
 router.get('/gallery', controller.getGalleries);                                            // + Get all Galleries from DB
 router.get('/gallery/:id', controller.getGalleryItems);                                     // + Get Gallery content by id
-// router.post('/gallery', authenticate, isAdmin, handleMulter(upload.single("image")), checkFileUpload, processImage, controller.addGallery);        // + Add new Gallery with uploading cover image and full description to DB
 router.post('/gallery', handleMulter(upload.single("image")), checkFileUpload, processImage, controller.addGallery);        // + Add new Gallery with uploading cover image and full description to DB
 router.delete('/gallery/:id', controller.deleteGallery);                                    // + Delete Gallery from DB if Gallery is empty (Gallery.content = []) and Gallery is not ROOT gallery)
 router.put('/gallery/:id', controller.editGallery);                                         // + Edit Gallery title or status - PUT or PATCH ???? меняется _id в title ????????

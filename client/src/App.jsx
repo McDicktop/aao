@@ -12,6 +12,9 @@ import Home from "./components/Home";
 import CurrentGallery from "./components/CurrentGallery";
 import Login from "./components/Login";
 
+
+
+
 function App() {
   const dispatch = useDispatch();
 
@@ -23,8 +26,12 @@ function App() {
       dispatch(updateGalleries(galleries));
       dispatch(updateImages(images));
     };
+
     fetchData();
   }, []);
+
+
+
 
   return (
     <Router>
@@ -32,7 +39,7 @@ function App() {
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
-        <Route path="/gallery/:id" element={<CurrentGallery />} />        
+        <Route path="/gallery/:id" element={<CurrentGallery />} />
       </Routes>
     </Router>
   );
