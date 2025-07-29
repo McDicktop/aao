@@ -10,7 +10,7 @@ function Home() {
   return (
     <div className="flex flex-col justify-center items-center">
       <Navigation />
-      <div className="flex w-250 min-w-250 flex-wrap gap-16 justify-center">
+      <div className="flex w-250 min-w-250 flex-wrap gap-16 justify-center mt-10">
         {gallery.galleries.length &&
           gallery.galleries.filter((item) => item.title.en !== 'root').map((el, ind) => (
             <div
