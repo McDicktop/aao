@@ -1,20 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    // language: 'ru',
+    language: 'en',
     uploadArtworkForm: false,
     editArtworkForm: false,
     createGalleryForm: false,
     editGalleryForm: false,
     artworkView: false,
-
 }
 
 export const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-
         handleForm: (state, action) => {
             switch (action.payload.form) {
                 case ('uploadArtwork'): {
@@ -39,10 +37,11 @@ export const appSlice = createSlice({
                 }
             }
         },
-
-
+        languageSelect: (state, action) => {
+            state.language = action.payload
+        },
     }
 })
 
-export const { handleForm } = appSlice.actions;
+export const { handleForm, languageSelect } = appSlice.actions;
 export default appSlice.reducer;
