@@ -9,9 +9,12 @@ import { fetchAllData } from "./utils/fetchAllData";
 
 import AdminPanel from "./components/AdminPanel";
 import Home from "./components/Home";
+import Layout from "./components/Layout";
 import CurrentGallery from "./components/CurrentGallery";
 import Login from "./components/Login";
-
+import Contacts from "./components/Contacts";
+import News from "./components/News";
+import About from "./components/About";
 
 
 
@@ -31,15 +34,20 @@ function App() {
   }, []);
 
 
-
-
   return (
     <Router>
       <Routes>
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/gallery/:id" element={<CurrentGallery />} />
+
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/gallery/:id" element={<CurrentGallery />} />
+        </Route>
+
       </Routes>
     </Router>
   );

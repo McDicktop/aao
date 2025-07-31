@@ -30,11 +30,10 @@ function Artwork({ artwork, currentGallery, isDragOn }) {
       className={`relative flex items-center gap-2 p-2 mx-2 border border-gray-100/0 hover:border-yellow-400 rounded-md select-none`}
     >
       <button
-        className={`absolute top-4 right-4 size-fit flex items-center justify-center duration-200 ${
-          currentGallery
+        className={`absolute top-4 right-4 size-fit flex items-center justify-center duration-200 ${currentGallery
             ? "text-neutral-400 cursor-pointer hover:text-neutral-100"
             : "text-neutral-700"
-        }`}
+          }`}
         onPointerDown={(e) => {
           e.stopPropagation();
         }}
@@ -53,13 +52,11 @@ function Artwork({ artwork, currentGallery, isDragOn }) {
         {...listeners}
         {...attributes}
         data-drag-handle
-        className={`size-10 flex-shrink-0 flex items-center justify-center duration-200 ${
-          isDragOn
+        className={`size-10 flex-shrink-0 flex items-center justify-center duration-200 ${isDragOn
             ? "text-neutral-400 cursor-grab hover:text-neutral-100"
             : "text-neutral-700"
-        } ${isDragging ? "cursor-grabbing" : ""} ${
-          !isDragOn ? "pointer-events-none" : ""
-        }`}
+          } ${isDragging ? "cursor-grabbing" : ""} ${!isDragOn ? "pointer-events-none" : ""
+          }`}
       >
         <GripVertical />
       </div>
@@ -78,7 +75,7 @@ function Artwork({ artwork, currentGallery, isDragOn }) {
 
       <div className="flex flex-col gap-2 w-full self-start overflow-hidden">
         <p className="flex items-center gap-2 font-medium w-8/9 overflow-hidden text-neutral-100">
-          <span className=" select-none mt-1 flex-shrink-0">
+          <span className="select-none mt-1 flex-shrink-0">
             {!artwork.status ? (
               <EyeClosed className="size-4.5" />
             ) : (

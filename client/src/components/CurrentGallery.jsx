@@ -38,7 +38,7 @@ function CurrentGallery() {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-[calc(100vh-5rem)] overflow-auto py-10">
       <div className="grid xl:grid-cols-4 sm:grid-cols-3 xl:gap-20 lg:gap-16 md:gap-10 sm:gap-6 place-items-center w-4/5">
         {galleryContent.length &&
           galleryContent.map((el, ind) => (
@@ -55,7 +55,7 @@ function CurrentGallery() {
                   .replace("images", "thumbs")
                   .replace("jpg", "webp")}
                 alt={`Photo ${el.title.en}`}
-                className="aspect-[4/4] w-full h-full object-cover rounded-2xl cursor-pointer border"
+                className="aspect-[4/4] w-full h-full object-cover rounded-2xl cursor-pointer duration-300 hover:blur-[1px] hover:opacity-80"
               // className="rounded-2xl cursor-pointer"
               />
             </div>
@@ -68,7 +68,8 @@ function CurrentGallery() {
           currentIndex={currentImageIndex}
           array={galleryContent}
           handleChange={handleChangeCurrentImageIndex}
-          handleClose={handleCloseModal}
+          onClose={handleCloseModal}
+          isOpen={gallery.isImageFullsize}
         />
       )}
     </div>
