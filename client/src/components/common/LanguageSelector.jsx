@@ -75,6 +75,7 @@ function LanguageSelector() {
                         alt={appLanguage.alt}
                         onMouseEnter={handleMouseEnter}
                         onClick={appLanguage.fn}
+                        draggable="false"
                     />
 
                     <div
@@ -88,6 +89,7 @@ function LanguageSelector() {
                                 alt={lang.alt}
                                 className={`w-8 h-8 transition-all duration-300  cursor-pointer ${isOpen ? 'translate-x-0' : '-translate-x-6'}`}
                                 onClick={lang.fn}
+                                draggable="false"
                             />
                         ))}
 

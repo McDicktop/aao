@@ -13,6 +13,7 @@ const config = require('./config.js');
 
 app.use(express.json());
 // app.use(cors());
+// app.use(cors({ origin: '*' }));
 app.use(cors({
   origin: process.env.CLIENT_URL,
   credentials: true
@@ -39,6 +40,7 @@ const start = async () => {
   try {
     await mongoose.connect(process.env.DB_URL);
     console.log('connected to aao db');
+    // app.listen(port, '0.0.0.0', () => console.log('Server starts on port', port));
     app.listen(port, () => console.log('Server starts on port', port));
   } catch (e) {
     console.log(e)

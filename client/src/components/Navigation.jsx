@@ -43,22 +43,22 @@ function Navigation() {
                 navigate('/about')
             }
         },
-        {
-            item: 'contacts',
-            en: 'Contacts',
-            es: 'Contactos',
-            ru: 'Контакты',
-            fn: () => {
-                dispatch(toggleFullsize(false));
-                navigate('/contacts')
-            }
-        },
+        // {
+        //     item: 'contacts',
+        //     en: 'Contacts',
+        //     es: 'Contactos',
+        //     ru: 'Контакты',
+        //     fn: () => {
+        //         dispatch(toggleFullsize(false));
+        //         navigate('/contacts')
+        //     }
+        // },
     ]
 
 
     return (
-        <div className='sticky top-0 w-full h-20 bg-white flex items-center justify-center relative min-w-220 z-100'>
-            <img className='absolute left-10' src={Logo} alt="logo" />
+        <div className='sticky top-0 w-full h-20 bg-white flex items-center justify-center relative min-w-220 z-100 select-none'>
+            <img className='absolute left-10' src={Logo} alt="logo" draggable="false" />
 
             <div className="absolute left-30">
                 <LanguageSelector />

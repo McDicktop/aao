@@ -13,10 +13,12 @@ function Gallery({ gallery }) {
                     navigate(`/gallery/${gallery._id}`);
                 }}
                 src={gallery.cover}
+                // src={gallery.cover.replace('localhost', '192.168.254.45')}
                 alt="image"
                 className="aspect-[4/4] w-64 h-64 object-cover cursor-pointer rounded-2xl duration-300 hover:blur-[1px] hover:opacity-80"
+                draggable="false"
             />
-            <p className='font-semibold text-2xl  text-center select-none'>{gallery.title[app.language]}</p>
+            <p className='font-semibold text-2xl text-center select-none'>{gallery.title[app.language]}</p>
         </div>
     )
 }

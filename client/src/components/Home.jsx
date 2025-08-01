@@ -14,8 +14,8 @@ function Home() {
   }, [gallery]);
 
   return (
-    <div className="flex flex-col justify-center items-center h-[calc(100vh-5rem)] overflow-auto pt-50 pb-10">
-      <div className="flex w-250 min-w-250 flex-wrap gap-16 justify-center mt-10">
+    <div className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] overflow-auto py-10 select-none">
+      <div className="flex w-250 min-w-250 min-h-72 max-h-full flex-wrap gap-16 justify-center">
         {sorted &&
           sorted.filter((item) => item.title.en !== 'root').map((el, ind) => (
             <div
