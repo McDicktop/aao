@@ -41,7 +41,7 @@ function CurrentGallery() {
     <div className="flex flex-col items-center h-[calc(100vh-5rem)] overflow-auto py-10">
       <div className="grid w-4/5 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-items-center gap-16">
         {galleryContent.length &&
-          galleryContent.map((el, ind) => (
+          galleryContent.filter((item) => item.status).map((el, ind) => (
             <div
               className="max-w-[280px] w-full"
               key={`image_${ind}`}

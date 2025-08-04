@@ -51,17 +51,20 @@ function GalleryModal({
 
           </div>
 
-          <p className="bg-gray-100/60 text-neutral-950 px-4 py-0.5 rounded-full font-medium text-sm">
-            {array[currentIndex].title[app.language]}
-          </p>
-          <div className="flex gap-2">
-            <p className="bg-gray-100/60 text-neutral-950 px-4 py-0.5 rounded-full font-medium text-xs">
-              {array[currentIndex].description[app.language]}
+          <div className="rounded-full flex flex-col font-medium text-xs text-neutral-950 bg-gray-100/60 px-6 py-2">
+            <p className="text-sm">
+              {array[currentIndex].title[app.language]}
             </p>
-            <p className="bg-gray-100/60 text-neutral-950 px-4 py-0.5 rounded-full font-medium text-xs">
-              {`${array[currentIndex].size.width} cm / ${array[currentIndex].size.height} cm ( ${(array[currentIndex].size.width / 2.54).toFixed(2)}'' / ${(array[currentIndex].size.height / 2.54).toFixed(2)}'' )`}
-            </p>
+            <div className="flex gap-4">
+              <p className="">
+                {array[currentIndex].description[app.language]}
+              </p>
+              <p className="">
+                {`${array[currentIndex].size.width} cm / ${array[currentIndex].size.height} cm ( ${(array[currentIndex].size.width / 2.54).toFixed(2)}'' / ${(array[currentIndex].size.height / 2.54).toFixed(2)}'' )`}
+              </p>
+            </div>
           </div>
+
         </div>
 
       </Modal>

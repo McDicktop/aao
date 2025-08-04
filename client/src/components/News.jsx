@@ -1,27 +1,20 @@
-import React from 'react'
-import expo1 from '../assets/expo1.jpg'
-import expo2 from '../assets/expo2.jpg'
-import expo3 from '../assets/expo3.jpg'
-
+import { useSelector } from 'react-redux'
 
 function News() {
+    const gallery = useSelector((state) => state.gallery);
+
     return (
         <div className='flex flex-col gap-10 items-center h-[calc(100vh-5rem)] overflow-auto py-10'>
-            <img
-                className='w-200 rounded-2xl'
-                src={expo3}
-                alt=""
-            />
-            <img
-                className='w-200 rounded-2xl'
-                src={expo2}
-                alt=""
-            />
-            <img
-                className='w-200 rounded-2xl'
-                src={expo1}
-                alt=""
-            />
+            {gallery.posters && gallery.posters.length &&
+                gallery.posters.filter((item) => item.status).map((poster, ind) =>
+                    <img
+                        key={`ind_${ind}`}
+                        className='w-120 rounded-2xl'
+                        src={poster.image}
+                        alt={`poster_${ind}`}
+                    />
+                )
+            }
         </div>
     )
 }

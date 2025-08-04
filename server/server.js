@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require("mongoose");
 const contentRouter = require("./routes/contentRouter.js");
 const authRouter = require("./routes/authRouter.js");
+const posterRouter = require("./routes/posterRouter.js");
 const fs = require('fs');
 const config = require('./config.js');
 
@@ -24,6 +25,7 @@ app.use("/cache/thumbs", express.static("cache/thumbs"));
 
 app.use("/", contentRouter);
 app.use("/auth", authRouter);
+app.use("/poster", posterRouter)
 
 
 // Автоматическое создание папок (если их нет)
