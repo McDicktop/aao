@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { updateImages, updateGalleries, updatePosters } from "./features/gallerySlice";
+import { updateImages, updateGalleries, updatePosts } from "./features/gallerySlice";
 
 import { fetchAllData } from "./utils/fetchAllData";
 
@@ -26,11 +26,11 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
 
-      const { galleries, images, posters } = await fetchAllData();
+      const { galleries, images, posts } = await fetchAllData();
 
       dispatch(updateGalleries(galleries));
       dispatch(updateImages(images));
-      dispatch(updatePosters(posters));
+      dispatch(updatePosts(posts));
     };
 
     fetchData();

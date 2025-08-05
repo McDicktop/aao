@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleForm } from "../features/appSlice";
 import ViewGalleries from "./common/admin/ViewGalleries";
 import ViewImages from "./common/admin/ViewImages";
+import ViewPosts from "./common/admin/ViewPosts";
 import Loader from "./common/Loader";
 import UploadImageForm from "./common/Forms/UploadImageForm";
 import EditArtworkForm from "./common/Forms/EditArtworkForm";
@@ -42,6 +43,7 @@ function AdminPanel() {
         handleSearch={handleSearch}
       />
       <ViewImages gallery={gallery} search={search} />
+      <ViewPosts gallery={gallery} />
 
       {app.uploadArtworkForm && (
         <UploadImageForm

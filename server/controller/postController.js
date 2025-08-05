@@ -1,14 +1,14 @@
 const path = require("path");
 const mongoose = require("mongoose");
-const Poster = require("../models/EventPoster.js");
+const Post = require("../models/Post.js");
 const deleteFileFromServer = require("../utils/deleteFileFromServer.js");
 const { uploads } = require("../config.js");
-class posterController {
+class postController {
 
-  async getPosters(req, res) {
+  async getPosts(req, res) {
     try {
-      const poster = await Poster.find();
-      return res.status(200).send(poster);
+      const post = await Post.find();
+      return res.status(200).send(post);
     } catch (e) {
       console.log(e);
       return res.status(500).json({
@@ -18,20 +18,64 @@ class posterController {
     }
   }
 
-  async addPoster(req, res) {
+  async addPost(req, res) {
     try {
       const filename = req.file.filename;
 
       const baseUrl = process.env.BASE_URL || "http://localhost:8080";
 
-      const poster = new Poster({
-        image: `${baseUrl}/cache/images/${filename}`,
-      });
-      await poster.save();
+      if (!req.body.content) {
+        const post = new Post({
+          image: `${baseUrl}/cache/images/${filename}`,
+        });
+        await post.save();
 
-      return res.status(201).json({
-        message: "Poster created successfully"
+        return res.status(201).json({
+          message: "Poster created successfully"
+        });
+      }
+
+      let body;
+
+      try {
+        body = JSON.parse({ ...req.body }.content);
+      } catch (parseError) {
+        return res.status(400).json({
+          message: "Invalid JSON format in content",
+          error: "INVALID_JSON",
+        });
+      }
+
+      if (body.title && typeof body.title !== 'object' || body.description && typeof body.description !== 'object') {
+        return res.status(400).json({
+          message:
+            "Post data is invalid",
+          error: "INVALID_DATA",
+        });
+      }
+
+      if (body.title?.en && typeof body.title?.en !== 'string' ||
+        body.title?.es && typeof body.title?.es !== 'string' ||
+        body.title?.ru && typeof body.title?.ru !== 'string' ||
+        body.description?.en && typeof body.description?.en !== 'string' ||
+        body.description?.es && typeof body.description?.es !== 'string' ||
+        body.description?.ru && typeof body.description?.ru !== 'string') {
+        return res.status(400).json({
+          message:
+            "Post data is invalid",
+          error: "INVALID_DATA",
+        });
+      }
+
+
+      const post = new Post({
+        ...body,
+        image: `http://localhost:8080/cache/images/${filename}`,
       });
+
+      await post.save();
+
+      return res.status(200).send(post);
 
     } catch (e) {
       console.log(e);
@@ -54,13 +98,13 @@ class posterController {
         });
       }
 
-      const updatedPoster = await Poster.findByIdAndUpdate(
+      const updatedPost = await Post.findByIdAndUpdate(
         id,
         [{ $set: { status: { $not: "$status" } } }],
         { new: true }
       );
 
-      return res.status(200).send(updatedPoster);
+      return res.status(200).send(updatedPost);
 
     } catch (e) {
 
@@ -72,7 +116,7 @@ class posterController {
   }
 
 
-  async deletePoster(req, res) {
+  async deletePost(req, res) {
     const { id } = req.params;
 
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
@@ -83,18 +127,18 @@ class posterController {
     }
 
     try {
-      const poster = await Poster.findById(id);
+      const post = await Post.findById(id);
 
-      if (!poster) {
+      if (!post) {
         return res.status(404).json({
           message: "Event poster not found",
           error: "CONTENT_MISSING",
         });
       }
 
-      const deletedPoster = await Poster.findByIdAndDelete(id);
+      const deletedPost = await Post.findByIdAndDelete(id);
 
-      return res.status(200).send(deletedPoster);
+      return res.status(200).send(deletedPost);
     } catch (e) {
       console.log(e);
       return res.status(500).json({
@@ -137,4 +181,4 @@ class posterController {
   // }
 }
 
-module.exports = { controller: new posterController() };
+module.exports = { controller: new postController() };

@@ -1,6 +1,6 @@
 import { getGalleries } from "../api/images";
 import { getImages } from "../api/images";
-import { getPosters } from "../api/posters";
+import { getPosts } from "../api/posts";
 
 export async function fetchAllData() {
   const galleries = await getGalleries();
@@ -22,14 +22,14 @@ export async function fetchAllData() {
     return;
   }
 
-  const posters = await getPosters();
+  const posts = await getPosts();
 
-  if (posters.message) {
+  if (posts.message) {
     alert(
-      `Error: ${posters?.response?.data?.message || posters.message}. Reload page`
+      `Error: ${posts?.response?.data?.message || posts.message}. Reload page`
     );
     return;
   }
 
-  return { galleries, images, posters };
+  return { galleries, images, posts };
 }
