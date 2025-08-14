@@ -1,28 +1,21 @@
 const jwt = require('jsonwebtoken');
-// const { ACCESS_TOKEN_SECRET } = require('../config/db');
+const { secret } = require('../config.js');
 
-// Проверка access token
-exports.authenticate = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (!token) {
-        return res.status(401).json({ message: 'No token provided' });
+module.exports = function (req, res, next) {
+    if (req.method === 'OPTIONS') {
+        next(); // сразу переадресуем в обработчик
     }
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) {
-            return res.status(403).json({ message: 'Invalid or expired token' });
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        if (!token) {
+            return res.status(403).json({ message: 'Пользователь не авторизирован' })
         }
-        req.user = user;
+        const decodedData = jwt.verify(token, secret);  // КАК РАБОТАЕТ, Где используется дальше req.user?  
+        req.user = decodedData;                         // НЕПОНЯТНО!    req.user = {_id, roles}
         next();
-    });
-};
-
-// Проверка роли администратора
-exports.isAdmin = (req, res, next) => {
-    if (req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'Admin access required' });
+    } catch (e) {
+        console.log(e);
+        return res.status(403).json({ message: 'Пользователь не авторизирован' })
     }
-    next();
-};
+} 

@@ -1,36 +1,19 @@
-// const Router = require('express');
-// const authController = require('../controller/authController.js');
-
-// const router = new Router();
-
-// // router.post('/', authController.login);
-// // router.post('/logout', authController.logout);
-
-// module.exports = router;
-
 const express = require('express');
 const router = express.Router();
 const authController = require('../controller/authController');
-const { authenticate, isAdmin } = require('../middlewares/authMiddleware');
+const { check } = require("express-validator");
 
 // Регистрация
-router.post('/register', authController.register);
+router.post('/signup',
+    [
+        check("email", "Email is invalid").trim().isEmail(),
+        check("password", "Password must be between 3 and 12 characters long")
+            .isLength({ min: 3, max: 12 })
+            .notEmpty(),
+    ],
+    authController.signup);
 
 // Логин
-router.post('/login', authController.login);
-
-// Обновление токена
-router.post('/refresh', authController.refreshToken);
-
-// Выход
-router.post('/logout', authController.logout);
-
-// Защищенный роут (требует access token)
-router.get('/protected', authenticate, authController.protectedRoute);
-
-// Админ роут (требует access token и роль admin)
-router.get('/admin', authenticate, isAdmin, (req, res) => {
-    res.json({ message: 'Admin dashboard', user: req.user });
-});
+router.post('/signin', authController.signin);
 
 module.exports = router;

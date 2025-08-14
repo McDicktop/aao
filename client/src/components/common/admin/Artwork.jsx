@@ -31,8 +31,8 @@ function Artwork({ artwork, currentGallery, isDragOn }) {
     >
       <button
         className={`absolute top-4 right-4 size-fit flex items-center justify-center duration-200 ${currentGallery
-            ? "text-neutral-400 cursor-pointer hover:text-neutral-100"
-            : "text-neutral-700"
+          ? "text-neutral-400 cursor-pointer hover:text-neutral-100"
+          : "text-neutral-700"
           }`}
         onPointerDown={(e) => {
           e.stopPropagation();
@@ -53,8 +53,8 @@ function Artwork({ artwork, currentGallery, isDragOn }) {
         {...attributes}
         data-drag-handle
         className={`size-10 flex-shrink-0 flex items-center justify-center duration-200 ${isDragOn
-            ? "text-neutral-400 cursor-grab hover:text-neutral-100"
-            : "text-neutral-700"
+          ? "text-neutral-400 cursor-grab hover:text-neutral-100"
+          : "text-neutral-700"
           } ${isDragging ? "cursor-grabbing" : ""} ${!isDragOn ? "pointer-events-none" : ""
           }`}
       >
@@ -71,6 +71,7 @@ function Artwork({ artwork, currentGallery, isDragOn }) {
           dispatch(setCurrentArtwork(artwork._id));
           dispatch(handleForm({ form: "artworkView", isOpen: true }));
         }}
+        draggable={false}
       />
 
       <div className="flex flex-col gap-2 w-full self-start overflow-hidden">
