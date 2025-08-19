@@ -2,7 +2,7 @@ import { useState } from "react";
 import { signin } from '../api/auth';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginStart, loginSuccess, loginFailure } from "../features/authSlice";
+// import { loginStart, loginSuccess, loginFailure } from "../features/authSlice";
 
 
 function Login() {
@@ -13,39 +13,39 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleChangePassword = (e) => {
+  const handlePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const handleChangeemail = (e) => {
+  const handleEmail = (e) => {
     setEmail(e.target.value);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(loginStart());
+    // dispatch(loginStart());
+    console.log(email, password)
+    // try {
 
-    try {
+    //   // const token = await signin(email, password)
+    //   const res = await signin(email, password)
 
-      // const token = await signin(email, password)
-      const res = await signin(email, password)
-
-      // console.log(res)
-      if (res.message) {
-        console.log(res.response.data.message)
-        dispatch(loginFailure());
-        setError('error');
-        return;
-      }
+    //   // console.log(res)
+    //   if (res.message) {
+    //     console.log(res.response.data.message)
+    //     dispatch(loginFailure());
+    //     setError('error');
+    //     return;
+    //   }
 
 
-      dispatch(loginSuccess({ token: res.data.token }));
-      navigate('/admin')
+    //   dispatch(loginSuccess({ token: res.data.token }));
+    //   navigate('/admin')
 
-    } catch (e) {
-      dispatch(loginFailure());
-      setError('Network error');
-    }
+    // } catch (e) {
+    //   dispatch(loginFailure());
+    //   setError('Network error');
+    // }
   }
 
 
@@ -69,7 +69,7 @@ function Login() {
             id="email"
             placeholder="Enter email"
             value={email}
-            onChange={handleChangeemail}
+            onChange={handleEmail}
             autoComplete="off"
           // required
           />
@@ -85,7 +85,7 @@ function Login() {
             id="password"
             placeholder="Enter password"
             value={password}
-            onChange={handleChangePassword}
+            onChange={handlePassword}
             autoComplete="off"
           // required
           />

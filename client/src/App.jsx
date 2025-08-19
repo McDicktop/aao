@@ -8,7 +8,6 @@ import { loginSuccess } from "./features/authSlice";
 
 import { fetchAllData } from "./utils/fetchAllData";
 
-import ProtectedRoute from "./components/ProtectedRoute";
 import AdminPanel from "./components/AdminPanel";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
@@ -45,15 +44,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/admin" element={<AdminPanel />} /> */}
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminPanel />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/admin" element={<AdminPanel />} />
+
         <Route path="/login" element={<Login />} />
 
         <Route path="/" element={<Layout />}>

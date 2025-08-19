@@ -16,8 +16,6 @@ export const signin = async (email, password) => {
         console.error('Error:', e);
         return e;
     }
-
-
 }
 
 export const signout = async () => {
