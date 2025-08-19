@@ -3,26 +3,24 @@ import { backend_url } from "./constants";
 
 
 
-export const auth = async (email, password) => {
+export const signin = async (email, password) => {
 
-    const res = await fetch(backend_url + 'auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-        localStorage.setItem('accessToken', data.accessToken);
-        return data;
-        // refreshToken автоматически сохраняется в httpOnly куки
-    } else {
-        throw new Error(data.error);
+    try {
+        const res = await axios.post(backend_url + 'auth/signin', { email, password }, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        return res;
+    } catch (e) {
+        console.error('Error:', e);
+        return e;
     }
+
+
 }
 
-export const logout = async () => {
+export const signout = async () => {
     try {
         await axios.post(backend_url + 'auth/logout', {}, {
             withCredentials: true, // Важно! Для кук
