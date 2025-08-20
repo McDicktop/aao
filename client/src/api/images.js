@@ -33,8 +33,10 @@ export const getGalleryContent = async (id) => {
 
 export const createGallery = async (formData) => {
     try {
+        const token = localStorage.getItem('authToken');
         const data = await axios.post(backend_url + 'gallery', formData, {
             headers: {
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
             }
         })
@@ -47,7 +49,13 @@ export const createGallery = async (formData) => {
 
 export const editGallery = async (id, body) => {
     try {
-        const data = await axios.put(backend_url + 'gallery/' + id, body)
+        const token = localStorage.getItem('authToken');
+        const data = await axios.put(backend_url + 'gallery/' + id,
+            body,
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        )
         return data;
     } catch (e) {
         console.error(e);
@@ -57,8 +65,10 @@ export const editGallery = async (id, body) => {
 
 export const changeCover = async (id, formData) => {
     try {
+        const token = localStorage.getItem('authToken');
         const res = await axios.patch(backend_url + 'gallery/' + id, formData, {
             headers: {
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
             }
         })
@@ -72,7 +82,12 @@ export const changeCover = async (id, formData) => {
 
 export const deleteGallery = async (id) => {
     try {
-        const res = await axios.delete(backend_url + 'gallery/' + id);
+        const token = localStorage.getItem('authToken');
+        const res = await axios.delete(backend_url + 'gallery/' + id,
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
         return res;
     } catch (e) {
         console.error(e);
@@ -82,8 +97,10 @@ export const deleteGallery = async (id) => {
 
 export const addImage = async (formData) => {
     try {
+        const token = localStorage.getItem('authToken');
         const data = await axios.post(backend_url, formData, {
             headers: {
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
             }
         })
@@ -96,7 +113,13 @@ export const addImage = async (formData) => {
 
 export const placeImageToGallery = async (id, imageId) => {
     try {
-        const data = await axios.patch(backend_url + 'gallery/add/' + id, { imageId });
+        const token = localStorage.getItem('authToken');
+        const data = await axios.patch(backend_url + 'gallery/add/' + id,
+            { imageId },
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
         return data;
     } catch (e) {
         console.error(e);
@@ -106,7 +129,13 @@ export const placeImageToGallery = async (id, imageId) => {
 
 export const removeImageFromGallery = async (galleryId, imageId) => {
     try {
-        const data = await axios.delete(backend_url + 'gallery/remove/' + galleryId, { data: { imageId } });
+        const token = localStorage.getItem('authToken');
+        const data = await axios.delete(backend_url + 'gallery/remove/' + galleryId,
+            {
+                data: { imageId },
+                headers: { Authorization: `Bearer ${token}` }
+            },
+        );
         return data;
     } catch (e) {
         console.error(e);
@@ -116,7 +145,13 @@ export const removeImageFromGallery = async (galleryId, imageId) => {
 
 export const editArtwork = async (id, body) => {
     try {
-        const data = await axios.put(backend_url + id, body);
+        const token = localStorage.getItem('authToken');
+        const data = await axios.put(backend_url + id,
+            body,
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
         return data;
     } catch (e) {
         console.error(e);
@@ -126,7 +161,12 @@ export const editArtwork = async (id, body) => {
 
 export const deleteArtwork = async (id) => {
     try {
-        const res = await axios.delete(backend_url + id);
+        const token = localStorage.getItem('authToken');
+        const res = await axios.delete(backend_url + id,
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
         return res;
     } catch (e) {
         console.error(e);
@@ -137,7 +177,12 @@ export const deleteArtwork = async (id) => {
 
 export const deleteImage = async (filename) => {
     try {
-        const data = await axios.delete(backend_url + 'file/' + filename)
+        const token = localStorage.getItem('authToken');
+        const data = await axios.delete(backend_url + 'file/' + filename,
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        )
         return data;
     } catch (e) {
         console.error(e);
@@ -147,8 +192,14 @@ export const deleteImage = async (filename) => {
 
 export const changeArtworkOrder = async (data) => {
     try {
+        const token = localStorage.getItem('authToken');
         const { imageId, newIndex, galleryId } = data;
-        const res = await axios.patch(backend_url + 'gallery/move/' + galleryId, { imageId, newIndex });
+        const res = await axios.patch(backend_url + 'gallery/move/' + galleryId,
+            { imageId, newIndex },
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
         return res;
     } catch (e) {
         console.error(e);
@@ -158,8 +209,14 @@ export const changeArtworkOrder = async (data) => {
 
 export const changeGalleryPosition = async (data) => {
     try {
+        const token = localStorage.getItem('authToken');
         const { newPos, galleryId } = data;
-        const res = await axios.patch(backend_url + 'gallery/position/' + galleryId, { newPos });
+        const res = await axios.patch(backend_url + 'gallery/position/' + galleryId,
+            { newPos },
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
         return res;
     } catch (e) {
         console.error(e);

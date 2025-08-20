@@ -17,6 +17,7 @@ import {
 import { handleForm } from "../../../features/appSlice";
 import { changeGalleryPosition } from "../../../api/images";
 import { fetchAllData } from "../../../utils/fetchAllData";
+import { userLogout } from "../../../features/authSlice";
 
 function ViewGalleries({ modalOpen, gallery, search, handleSearch }) {
   const navigate = useNavigate();
@@ -73,6 +74,8 @@ function ViewGalleries({ modalOpen, gallery, search, handleSearch }) {
   };
 
   const handleLogout = async () => {
+    dispatch(userLogout());
+    navigate("/login");
   }
 
   return (
@@ -80,14 +83,16 @@ function ViewGalleries({ modalOpen, gallery, search, handleSearch }) {
       <div className="flex items-center gap-3 px-4 mt-4">
         <button
           onClick={() => dispatch(setCurrentGallery(null))}
-          className="bg-neutral-800 border border-neutral-700 p-2 rounded-xl text-neutral-400 flex-shrink-0 cursor-pointer hover:text-neutral-300 "
+          className="bg-neutral-800 border border-neutral-700 p-2 rounded-xl text-neutral-400 flex-shrink-0 cursor-pointer hover:text-neutral-300"
+        // title="Show all artworks"
         >
           <Home className="size-6" />
         </button>
         <button
           type="button"
           onClick={handleLogout}
-          className="bg-neutral-800 border border-neutral-700 p-2 rounded-xl text-neutral-400 flex-shrink-0 cursor-pointer hover:text-neutral-300 "
+          className="bg-neutral-800 border border-neutral-700 p-2 rounded-xl text-neutral-400 flex-shrink-0 cursor-pointer hover:text-neutral-300"
+        // title="Log out"
         >
           <LogOut className="size-6" />
         </button>

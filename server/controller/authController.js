@@ -67,7 +67,7 @@ class authController {
 
             const token = generateToken(user._id, user.role);
 
-            return res.status(201).json({ token, userId: user._id });
+            return res.status(201).json({ token, userId: user._id, email: user.email });
         } catch (e) {
             console.log(e);
             return res.status(500).json({

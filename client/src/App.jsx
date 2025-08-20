@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { updateImages, updateGalleries, updatePosts } from "./features/gallerySlice";
-import { loginSuccess } from "./features/authSlice";
 
 import { fetchAllData } from "./utils/fetchAllData";
 
+import ProtectedRoute from "./components/ProtectedRoute";
 import AdminPanel from "./components/AdminPanel";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
@@ -24,10 +24,6 @@ function App() {
 
   useEffect(() => {
 
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      dispatch(loginSuccess({ token, user: { role: 'admin' } }))
-    }
     const fetchData = async () => {
 
       const { galleries, images, posts } = await fetchAllData();
@@ -44,7 +40,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/admin" element={<AdminPanel />} />
+        {/* <Route path="/admin" element={<AdminPanel />} /> */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="/login" element={<Login />} />
 

@@ -27,6 +27,7 @@ router.put('/gallery/:id', adminMiddleware, controller.editGallery);            
 router.patch('/gallery/:id', adminMiddleware, handleMulter(upload.single("image")), checkFileUpload, processImage, controller.changeCover);  // + Change Gallery cover
 router.patch('/gallery/add/:id', adminMiddleware, controller.addImageToGallery);                             // + Add image._id to gallery.content by gallery id
 router.delete('/gallery/remove/:id', adminMiddleware, controller.removeImageFromGallery);                    // + Remove image._id from gallery.content by gallery id
+// router.delete('/gallery/remove/:id', controller.removeImageFromGallery);                    // + Remove image._id from gallery.content by gallery id
 router.patch('/gallery/move/:id', adminMiddleware, controller.moveImage);                                    // + Change artwork (image._id) order in gallery
 
 router.patch('/gallery/position/:id', adminMiddleware, controller.changePosition);                        //  Change gallerie position in Gallery collection

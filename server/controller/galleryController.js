@@ -552,8 +552,6 @@ class galleryController {
 
   async postImage(req, res) {
 
-    console.log('ssdfsdfs')
-
     try {
       const filename = await req.file.filename;
 

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { backend_url } from "./constants";
 
-
-
 export const signin = async (email, password) => {
 
     try {
