@@ -40,7 +40,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/admin" element={<AdminPanel />} /> */}
         <Route
           path="/admin"
           element={

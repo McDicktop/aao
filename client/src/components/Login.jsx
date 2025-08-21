@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken, userLogin } from "../features/authSlice";
 import { signin } from "../api/auth";
+import LoadingButton from "./common/Button/LoadingButton";
 
 
 function Login() {
@@ -33,18 +34,24 @@ function Login() {
 
     if (res.code) {
 
-      switch (res.code) {
-        case ("ERR_BAD_REQUEST"): {
-          setError(res.response.data.message || 'Login error');
-          setLoading(false);
-          break;
-        }
-        default: {
-          setError('Internal server error')
-          setLoading(false);
-        }
-      }
+      res.code === "ERR_BAD_REQUEST" ?
+        setError(res.response.data.message || 'Login error') :
+        setError('Internal server error');
+      setLoading(false);
       return;
+
+      // switch (res.code) {
+      //   case ("ERR_BAD_REQUEST"): {
+      //     setError(res.response.data.message || 'Login error');
+      //     setLoading(false);
+      //     break;
+      //   }
+      //   default: {
+      //     setError('Internal server error')
+      //     setLoading(false);
+      //   }
+      // }
+      // return;
     }
 
     dispatch(setToken(res.data.token));
@@ -115,7 +122,7 @@ function Login() {
           />
         </div>
 
-        <button
+        {/* <button
           className={`w-24 py-1 rounded-xl text-neutral-300 font-semibold cursor-pointer duration-300 ${loading
             ? "bg-gray-500 cursor-not-allowed"
             : "bg-blue-500 hover:bg-blue-600"
@@ -124,7 +131,11 @@ function Login() {
           disabled={loading}
         >
           {loading ? "Loading..." : "Log in"}
-        </button>
+        </button> */}
+
+        <LoadingButton isLoading={loading}>
+          Log in
+        </LoadingButton>
       </form>
 
     </div>
