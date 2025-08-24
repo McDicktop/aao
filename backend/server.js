@@ -25,8 +25,7 @@ app.use("/cache/thumbs", express.static("cache/thumbs"));
 
 app.use("/", contentRouter);
 app.use("/auth", authRouter);
-app.use("/post", postRouter)
-
+app.use("/post", postRouter);
 
 // Автоматическое создание папок (если их нет)
 Object.values(config.uploads).forEach(dir => {
@@ -34,8 +33,6 @@ Object.values(config.uploads).forEach(dir => {
     fs.mkdirSync(dir, { recursive: true });
   }
 });
-
-
 
 const start = async () => {
 
@@ -50,3 +47,8 @@ const start = async () => {
 }
 
 start();
+
+
+
+// /api/v1/auth
+// /api/v1/post

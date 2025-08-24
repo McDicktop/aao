@@ -57,18 +57,22 @@ function Navigation() {
 
 
     return (
-        <div className='sticky top-0 w-full h-20 bg-white flex items-center justify-center relative min-w-220 z-100 select-none'>
-            <img className='absolute left-10' src={Logo} alt="logo" draggable="false" />
+        <div className='sticky top-0 w-full h-10 md:h-20 bg-white flex items-center justify-center relative z-100 select-none  md:min-w-220'>
+            <img className='absolute left-0 md:left-10 h-5 md:h-8' src={Logo} alt="logo" draggable="false" />
 
-            <div className="absolute left-30">
+            <div className="absolute left-10 md:left-30 border">
                 <LanguageSelector />
             </div>
+            {/* <div className='lg:hidden'>
+                <Burger />
+            </div> */}
+            
 
-            <nav className='flex text-xl list-none gap-10 w-fit'>
+            <nav className='flex text-lg md:text-xl list-none gap-2 md:gap-10 w-fit border'>
                 {navItems.map((item, ind) => (
                     <li
                         key={`ind_${ind}`}
-                        className="cursor-pointer w-32 text-center font-semibold hover:bg-neutral-800 hover:text-neutral-100 py-2 rounded-xl duration-300"
+                        className="cursor-pointer w-16 md:w-32 text-center font-semibold hover:bg-neutral-800 hover:text-neutral-100 py-2 rounded-xl duration-300"
                         onClick={item.fn}
                     >{item[app.language]}</li>
                 ))}

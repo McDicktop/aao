@@ -36,7 +36,6 @@ export const authSlice = createSlice({
             localStorage.removeItem("authToken");
             localStorage.removeItem("userData");
         },
-
     }
 })
 
