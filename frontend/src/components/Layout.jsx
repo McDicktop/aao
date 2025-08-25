@@ -5,7 +5,7 @@ function Layout() {
     return (
         <>
             <Navigation />
-            <main className='border border-red-500'>
+            <main>
                 <Outlet />
             </main>
         </>

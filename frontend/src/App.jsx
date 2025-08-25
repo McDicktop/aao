@@ -16,7 +16,7 @@ import Login from "./components/Login";
 import Contacts from "./components/Contacts";
 import News from "./components/News";
 import About from "./components/About";
-
+import Burger from "./components/Burger";
 
 function App() {
 
@@ -56,6 +56,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/about" element={<About />} />
           <Route path="/contacts" element={<Contacts />} />
+          <Route path="/burger" element={<Burger />} />
           <Route path="/gallery/:id" element={<CurrentGallery />} />
         </Route>
 

@@ -51,16 +51,19 @@ function LanguageSelector() {
         setAppLanguage(language.find((el) => el.id === app.language));
     }, [app.language])
 
-    const handleMouseEnter = () => {
-        clearTimeout(timeoutRef.current);
-        setIsOpen(true);
-    };
-
     const handleMouseLeave = () => {
         timeoutRef.current = setTimeout(() => {
             setIsOpen(false);
         }, 100);
     };
+
+    const handleLanguage = () => {
+        if (!isOpen) {
+            setIsOpen(true);
+            return;
+        }
+        handleMouseLeave();
+    }
 
     return (
         <>
@@ -73,13 +76,11 @@ function LanguageSelector() {
                         className='h-8 w-8 cursor-pointer'
                         src={appLanguage.ico}
                         alt={appLanguage.alt}
-                        onMouseEnter={handleMouseEnter}
-                        onClick={appLanguage.fn}
+                        onClick={handleLanguage}
                         draggable="false"
                     />
 
                     <div
-                        onMouseEnter={handleMouseEnter}
                         className={`flex space-x-2 transition-all duration-300 overflow-hidden ${isOpen ? 'w-18 opacity-100 ml-2' : 'w-0 opacity-0'}`}
                     >
                         {language.filter((el) => el.id !== app.language).map((lang, ind) => (

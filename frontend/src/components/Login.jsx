@@ -81,13 +81,17 @@ function Login() {
         onSubmit={handleLogin}
         className="p-6 rounded-xl flex flex-col items-center gap-4 bg-neutral-600"
       >
-        <p className="text-xl font-semibold">Log in</p>
+        {/* <p className="text-xl font-semibold">Log in</p> */}
 
-        {error && (
+        {/* {error && (
           <div className="text-red-400 text-sm bg-red-900/20 p-2 rounded">
             {error}
           </div>
-        )}
+        )} */}
+
+        <div className={`${error ? 'text-red-400 bg-red-900/20 rounded-xl' : ''} px-4 py-2 font-semibold`}>
+          {error || 'Log in'}
+        </div>
 
         <div className="h-10 w-80 flex items-center justify-center gap-2 rounded-t-xl">
           <label className="w-20" htmlFor="email">
