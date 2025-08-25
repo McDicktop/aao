@@ -39,7 +39,8 @@ function CurrentGallery() {
 
   return (
     <div className="flex flex-col items-center h-[calc(100vh-5rem)] overflow-auto py-10">
-      <div className="grid w-4/5 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-items-center gap-16">
+      {/* <div className="grid w-4/5 grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(260px,1fr))] justify-items-center gap-16"> */}
+      <div className="grid w-4/5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-16">
         {galleryContent.length &&
           galleryContent.filter((item) => item.status).map((el, ind) => (
             <div

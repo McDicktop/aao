@@ -26,11 +26,16 @@ function About() {
     return (
         <>
             {app.language &&
-                <div className='flex flex-col items-center select-none p-4 gap-8'>
+                <div className='w-full flex flex-col justify-center items-center py-10 gap-10 bg-neutral-100'>
 
-                    <div className='flex w-320 h-130 gap-4'>
-                        <img className='rounded-xl object-cover border' src={aao} alt="" draggable="false" />
-                        <div className='border border-neutral-400 rounded-xl flex flex-col justify-center'>
+                    <div className='rounded-[28px] w-120 p-[12px] bg-white'>
+                        <img className='rounded-[16px] w-full' src={aao} alt="aao-image" draggable="false" />
+                    </div>
+
+
+                    <div className='rounded-[28px] w-120 p-[12px] bg-white'>
+                        <div className='rounded-[16px] flex flex-col justify-center bg-neutral-100'>
+                            <div className='p-4 text-justify font-semibold text-neutral-600'>About Alexander Ovcharov</div>
                             <div className='p-4 text-justify text-sm text-neutral-600'>
                                 {bio[app.language].split('.').map((str, ind) => <div key={`ind_${ind}`}>{`${str}.`}</div>)}
                             </div>
@@ -38,65 +43,81 @@ function About() {
                                 {expos[app.language].split('.').map((str, ind) => <div key={`ind_${ind}`}>{str}</div>)}
                             </div>
                         </div>
-
                     </div>
 
-                    <div className='flex flex-col gap-4 w-fit p-2'>
+                    <div className='rounded-[28px] w-120 p-[12px] bg-white'>
 
-                        <p className='text-[22px] font-semibold text-center'>Contact me</p>
+                        <div className='bg-neutral-100 rounded-[16px] flex flex-col gap-4 py-4'>
 
-                        <div className='flex'>
-                            <img
-                                className='w-12 cursor-pointer hover:opacity-80 duration-300'
-                                src={fb}
-                                alt="facebook"
-                            />
-                            <img
-                                className='w-12 cursor-pointer hover:opacity-80 duration-300'
-                                src={youtube}
-                                alt="youtube"
-                            />
-                            <img
-                                className='w-12 cursor-pointer hover:opacity-80 duration-300'
-                                src={insta}
-                                alt="instagram"
-                            />
+                            <p className='text-[22px] font-semibold text-center'>Contact me</p>
+
+                            <div className='flex justify-center'>
+                                <img
+                                    className='w-12 cursor-pointer hover:opacity-80 duration-300'
+                                    src={fb}
+                                    alt="facebook"
+                                />
+                                <img
+                                    className='w-12 cursor-pointer hover:opacity-80 duration-300'
+                                    src={youtube}
+                                    alt="youtube"
+                                />
+                                <img
+                                    className='w-12 cursor-pointer hover:opacity-80 duration-300'
+                                    src={insta}
+                                    alt="instagram"
+                                />
+                            </div>
                         </div>
-                    </div>
-
-
-                    <div>
-                        {/* <div className='flex gap-4 w-fit p-2 border'>
-                            <img
-                                className='w-40 cursor-pointer'
-                                src={tg}
-                                alt="telegram"
-                            />
-                            <img
-                                className='w-40 cursor-pointer'
-                                src={tg}
-                                alt="whatsup"
-                            />
-                        </div> */}
-
 
                     </div>
-
-
-
-                    {/* <form action="">
-                        <div>FORM</div>
-                    </form> */}
-
-
 
 
                 </div>
+                // <div className='flex flex-col items-center select-none p-4 gap-8 bg-neutral-100'>
 
+                //     <div className='flex flex-col w-120 gap-4 p-4 rounded-xl bg-white'>
+
+                //         <img className='rounded-xl object-cover' src={aao} alt="aao-image" draggable="false" />
+
+
+                //         <div className='rounded-xl flex flex-col justify-center bg-neutral-100'>
+                //             <div className='p-4 text-justify text-sm text-neutral-600'>
+                //                 {bio[app.language].split('.').map((str, ind) => <div key={`ind_${ind}`}>{`${str}.`}</div>)}
+                //             </div>
+                //             <div className='p-4 text-justify text-sm text-neutral-600 font-semibold'>
+                //                 {expos[app.language].split('.').map((str, ind) => <div key={`ind_${ind}`}>{str}</div>)}
+                //             </div>
+                //         </div>
+
+                //     </div>
+
+                //     <div className='flex flex-col w-120 gap-4 p-4 rounded-xl bg-white p-4 border'>
+
+                //         <div className='flex rounded-xl bg-neutral-100'>
+
+                //             <p className='text-[22px] font-semibold text-center'>Contact me</p>
+
+                // <img
+                //     className='w-12 cursor-pointer hover:opacity-80 duration-300'
+                //     src={fb}
+                //     alt="facebook"
+                // />
+                // <img
+                //     className='w-12 cursor-pointer hover:opacity-80 duration-300'
+                //     src={youtube}
+                //     alt="youtube"
+                // />
+                // <img
+                //     className='w-12 cursor-pointer hover:opacity-80 duration-300'
+                //     src={insta}
+                //     alt="instagram"
+                // />
+                //         </div>
+                //     </div>
+
+                // </div>
             }
-
-
-
         </>
     )
 }
